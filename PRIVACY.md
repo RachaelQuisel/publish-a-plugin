@@ -16,7 +16,7 @@ Publish a Plugin is a package of instructions, reference text, and two local scr
 
 The reference intentionally includes the patterns discussed in observed findings.
 
-`references/scanner-false-positives.md` documents the exact markdown patterns that make the directory's scanner report a credential read. To document them it has to contain them. The file holds the literal examples `$95M`, `$20/mo`, the bare token `env`, `printenv`, `export -p`, and the `${user_config.KEY}` remedy syntax. `SKILL.md` names `$PATH` and `$1` in the passage explaining which shell syntax must be preserved.
+`references/scanner-false-positives.md` documents the exact markdown patterns that make the directory's scanner report a credential read. To document them it has to contain them, so the file reproduces the specimen currency figures, shell-variable spellings, environment-inspection command names, and the user-config substitution syntax that the findings named. `SKILL.md` reproduces two further shell-variable spellings in the passage explaining which syntax must be preserved.
 
 An automated scan may interpret the quoted prose as executable shell. The bundled scripts do not read credentials. There is no code here that reads a credential, and the scripts above are the only executable parts.
 

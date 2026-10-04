@@ -25,6 +25,28 @@ EXPORT_TOKEN = re.compile(r'\bexport -p\b')
 problems, notes = [], []
 
 
+# A file that documents the scanner's own trigger patterns has to contain them. Mark such a
+# file with this comment and preflight skips its $ and env line scan, naming it in the notes so
+# the exemption is never silent.
+EXEMPT_MARKER = "preflight-allow: documents-scanner-patterns"
+
+
+def tracked_files(root):
+    """Files git tracks under root. The directory scans the repository, not the working
+    directory, so untracked local scratch (.claude/ hook configs, editor temp files) is
+    not part of the submission and must not be reported. Returns None outside a repo."""
+    import subprocess
+    try:
+        out = subprocess.run(["git", "-C", root, "ls-files", "-z"],
+                             capture_output=True, text=True, timeout=10)
+        if out.returncode != 0:
+            return None
+        names = [n for n in out.stdout.split("\0") if n]
+        return {os.path.join(root, n) for n in names} or None
+    except Exception:
+        return None
+
+
 def png_report(path):
     data = open(path, 'rb').read()
     if data[:8] != SIG:
@@ -137,10 +159,16 @@ def main():
     # ---- markdown patterns ----
     flagged_dollar, flagged_env = [], []
     total = 0
+    tracked = tracked_files(root)
+    if tracked is None:
+        notes.append("not a git repository, or git unavailable; scanning the working "
+                     "directory, which may include files the submission will not contain")
     for dp, dn, fn in os.walk(root):
-        dn[:] = [d for d in dn if d not in (".git", "node_modules")]
+        dn[:] = [d for d in dn if d not in (".git", "node_modules", ".claude")]
         for f in fn:
             p = os.path.join(dp, f)
+            if tracked is not None and p not in tracked:
+                continue
             sz = os.path.getsize(p)
             total += sz
             if f.endswith(".md"):
@@ -150,7 +178,13 @@ def main():
                 elif sz > FILE_CAP * 0.85:
                     notes.append(f"{os.path.relpath(p, root)} is {sz:,} bytes, within 15% of the "
                                  f"256 KiB cap; it breaks the next time you add to it")
-                for n, line in enumerate(open(p, encoding="utf-8", errors="replace"), 1):
+                body = open(p, encoding="utf-8", errors="replace").read()
+                if EXEMPT_MARKER in body:
+                    notes.append(f"{os.path.relpath(p, root)} is marked as documenting the "
+                                 f"scanner's patterns; its $ and env scan was skipped. The "
+                                 f"directory will still flag it, and a reviewer confirms it")
+                    continue
+                for n, line in enumerate(body.splitlines(), 1):
                     for mt in DOLLAR.finditer(line):
                         if not ALLOWED_DOLLAR.match(mt.group(0)):
                             flagged_dollar.append((os.path.relpath(p, root), n, mt.group(0)))

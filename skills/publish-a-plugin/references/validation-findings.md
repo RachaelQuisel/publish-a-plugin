@@ -1,5 +1,8 @@
 # Validation findings, and which ones to act on
 
+<!-- preflight-allow: documents-scanner-patterns -->
+
+
 Every finding observed on real submissions, what it means, and what to do. The short version: most
 warnings are structural and expected. Act on the policy holds.
 

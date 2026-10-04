@@ -5,6 +5,9 @@ description: Interactively prepare a Claude Code plugin for directory review. As
 
 # Publish a Plugin
 
+<!-- preflight-allow: documents-scanner-patterns -->
+
+
 Read [the conversation and writing rules](references/conversation-and-writing.md) before responding. Apply them to all user-facing text.
 
 ## Start the conversation

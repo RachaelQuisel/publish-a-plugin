@@ -1,5 +1,8 @@
 # When the scanner reads your markdown as shell
 
+<!-- preflight-allow: documents-scanner-patterns -->
+
+
 The directory scans every file, including documentation, for signs that a plugin reads credentials
 and sends them somewhere. On a plugin made of markdown this produces false positives, because prose
 *about* other products' settings looks like instructions *to* run them.
