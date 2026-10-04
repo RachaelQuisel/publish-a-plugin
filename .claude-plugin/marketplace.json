@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "publish-a-plugin",
+  "description": "Publish a Plugin: get a Claude Code plugin through Anthropic's directory review on the first try.",
+  "owner": {
+    "name": "Rachael Quisel"
+  },
+  "plugins": [
+    {
+      "name": "publish-a-plugin",
+      "description": "Get a Claude Code plugin through Anthropic's directory review on the first try. Documents the security scanner's behaviour and ships a preflight script that catches the findings before you submit.",
+      "source": "./",
+      "category": "productivity",
+      "homepage": "https://github.com/RachaelQuisel/publish-a-plugin"
+    }
+  ]
+}

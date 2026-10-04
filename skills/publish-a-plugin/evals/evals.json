@@ -1,0 +1,48 @@
+{
+  "skill_name": "publish-a-plugin",
+  "evals": [
+    {
+      "id": 0,
+      "name": "dont-strip-manifest-fields",
+      "prompt": "just got my validation report back from the anthropic plugin directory for my meeting-notes plugin and it says 3 warnings. one is 'Unrecognized field in plugin.json' with 2 findings, documentationUrl and supportUrl. one is 'Field from another tool's manifest' pointing at icon. and one is 'Images and fonts passed without a code check'. do i need to strip those fields out of my manifest before i submit? trying not to get rejected here",
+      "expected_output": "Tells the user NOT to remove the fields, explains that the plugin loader ignores them but the directory reads them, notes the portal itself says no action needed, and that removing them would break the listing. Should not recommend any manifest edit.",
+      "files": [],
+      "assertions": [
+        "Tells the user NOT to remove documentationUrl, supportUrl or icon from plugin.json",
+        "Explains the loader-versus-directory distinction: Claude Code ignores these fields, the directory reads them",
+        "States that removing them would break the listing (no docs link, no support link, no icon)",
+        "Treats the images-and-fonts item as informational rather than a defect to fix",
+        "Recommends no edit to plugin.json and tells the user to proceed"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "package-existing-skill",
+      "prompt": "i've got a skill at ~/.claude/skills/invoice-chaser that i want to get into the anthropic plugin directory. right now its just a SKILL.md and two reference files. what do i need to add and how should the repo be laid out? my designer made me an icon, 1024x1024 png, its about 900kb",
+      "expected_output": "Gives the repo layout, the full plugin.json field list including icon/documentationUrl/supportUrl and lowercase-kebab name, flags the 900kb icon as over the ~768 KiB ceiling that correlates with a policy hold, points at shrink_icon.py and preflight.py, mentions claude plugin validate --strict and the 2.1.281 requirement, and says the plugin path field stays empty for a root layout.",
+      "files": [],
+      "assertions": [
+        "Flags the ~900kb icon as a submission risk and gives a concrete size target near 768 KiB",
+        "Lists icon, documentationUrl and supportUrl as plugin.json fields",
+        "States that name must be lowercase kebab-case, with displayName carrying the readable name",
+        "Says the portal's Plugin path field stays empty for a repository-root layout",
+        "Mentions claude plugin validate --strict",
+        "Points the user at a bundled script (shrink_icon.py or preflight.py) rather than hand-rolling"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "credential-false-positive",
+      "prompt": "my plugin just got held by the directory. it says 'Something in the plugin reads a credential (a token or API key) from the user's environment or files and could send it to a server. A reviewer will check where it goes.' and its pointing at one of my reference docs that documents how another tool wants you to set up a GITHUB_TOKEN. it wants me to use a ${user_config.KEY} marked sensitive instead. but my plugin is literally only markdown files, theres no code in it anywhere. what do i actually do here",
+      "expected_output": "Identifies this as a false positive from pattern-matching prose. Explicitly says NOT to add a user_config option for a credential the plugin does not use, because that makes the manifest claim something untrue. Identifies the likely triggering patterns, suggests rewording, suggests PRIVACY.md, and notes a policy hold is a review not a rejection so leaving it is legitimate.",
+      "files": [],
+      "assertions": [
+        "Identifies the finding as a false positive given the plugin is markdown only",
+        "Explicitly advises AGAINST adding a user_config option for a credential the plugin does not use",
+        "Names at least one concrete triggering pattern (a $-prefixed token, or a bare env/printenv/export token)",
+        "States that a policy hold is a review rather than a rejection, so leaving it is a legitimate option",
+        "Suggests a written disclosure (PRIVACY.md or equivalent) stating the package reads no credentials"
+      ]
+    }
+  ]
+}
