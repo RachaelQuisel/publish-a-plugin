@@ -87,10 +87,32 @@ def main():
            not os.path.exists(os.path.join(root, "LICENSE")):
             problems.append("no LICENSE file; compliance checks the file and the field")
 
-        # listing fields must not be duplicated into marketplace.json
-        mk = os.path.join(root, ".claude-plugin", "marketplace.json")
-        if os.path.exists(mk):
+        # a marketplace manifest must exist, or the plugin cannot be installed by name.
+        # root layout keeps it beside plugin.json; subdirectory layout keeps it at the repo root.
+        mk = None
+        probe = pdir
+        for _ in range(6):
+            cand = os.path.join(probe, ".claude-plugin", "marketplace.json")
+            if os.path.exists(cand):
+                mk = cand
+                break
+            parent = os.path.dirname(probe)
+            if parent == probe:
+                break
+            probe = parent
+        if not mk:
+            problems.append(
+                "no .claude-plugin/marketplace.json found at or above the plugin folder; "
+                "without it `claude plugin marketplace add` fails and the plugin cannot be "
+                "installed by name. validate and the rest of preflight do not catch this")
+        else:
+            # listing fields must not be duplicated into marketplace.json
             mm = json.load(open(mk))
+            names = [e.get("name") for e in mm.get("plugins", [])]
+            if name and names and name not in names:
+                problems.append(
+                    f"marketplace.json lists {names}, which does not include '{name}'; "
+                    f"`claude plugin install {name}@...` will not resolve")
             for entry in mm.get("plugins", []):
                 for f in ("icon", "documentationUrl", "supportUrl"):
                     if f in entry:

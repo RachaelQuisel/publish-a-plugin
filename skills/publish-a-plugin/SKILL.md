@@ -111,7 +111,14 @@ If access is missing, explain what must be connected. Continue independent local
 
 ## Installation checks
 
-A manifest check confirms structure. Test installation separately when it is requested or needed:
+A manifest check confirms structure. It does not confirm the plugin can be installed. A repository
+with `plugin.json` and no `marketplace.json` passes both `claude plugin validate --strict` and every
+other preflight check, then fails on `marketplace add` with "Marketplace file not found". This
+happens most often to a plugin moved out of a multi-plugin repository, because the marketplace
+manifest stayed behind. `preflight.py` reports it, along with a `marketplace.json` whose entry name
+does not match `plugin.json`, which breaks `install` the same way.
+
+Test installation separately when it is requested or needed:
 
 ```text
 claude plugin marketplace add <owner>/<repo>
