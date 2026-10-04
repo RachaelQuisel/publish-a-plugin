@@ -4,8 +4,8 @@
 
 - **1024×1024 PNG.** RGBA is fine.
 - Referenced as `"icon": "./icon.png"` in `plugin.json`, never in `marketplace.json`.
-- Placed beside the `plugin.json` that references it. For the subdirectory layout that means
-  `plugins/<name>/icon.png`, not the repository root.
+- Placed at the plugin folder root and referenced from its manifest. For the subdirectory layout that means
+  `plugins/<name>/icon.png`, rather than the repository root.
 
 ## The size ceiling
 
@@ -14,13 +14,13 @@
 | Bytes | Result |
 |---|---|
 | 761,479 | passed |
-| 793,042 | **policy hold** — "Files or downloads the validator couldn't inspect" |
+| 793,042 | **policy hold**; "Files or downloads the validator couldn't inspect" |
 | 816,698 | recompressed before submission, untested at original size |
 
 Those straddle **768 KiB (786,432 bytes)**. That is two data points either side of a round number,
 which is suggestive rather than proven. Treat 768 KiB as a ceiling to stay under; it costs nothing.
 
-The hold's stated remedy — remove long embedded text — did not apply: all three PNGs contained only
+The hold's stated remedy; remove long embedded text; did not apply: all three PNGs contained only
 `IHDR`, `IDAT` and `IEND`, with no `tEXt`, `iTXt`, `zTXt`, `eXIf` or `iCCP` chunk to remove.
 
 ## Getting under it without touching the image
@@ -39,8 +39,8 @@ observed:
 761,479 -> 702,929   (7.7% smaller)
 ```
 
-If recompression is not enough, the next lever is the source render — fewer colours, less noise
-texture — not the encoding. A flat-colour illustration at 1024² should not need 700 KB; these sizes
+If recompression is not enough, the next option is the source render; fewer colours, less noise
+texture; not the encoding. A flat-colour illustration at 1024² should not need 700 KB; these sizes
 come from paper-grain texture, which compresses badly by design.
 
 ## Do not change an icon on a plugin mid-submission

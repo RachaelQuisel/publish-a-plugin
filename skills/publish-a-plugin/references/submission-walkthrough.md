@@ -18,8 +18,8 @@
 | Branch or tag | Empty to follow the default branch. A tag pins to its commit until you change it. |
 
 Fill the path in for a subdirectory-layout plugin rather than relying on auto-detection. The portal
-does report the layout informationally — *"marketplace.json lists 1 plugin folder in this
-repository"* — but whether a blank path validates has not been tested here.
+does report the layout informationally; *"marketplace.json lists 1 plugin folder in this
+repository"*; but whether a blank path validates has not been tested here.
 
 Then **Validate**. Work the findings with
 [validation-findings.md](validation-findings.md).

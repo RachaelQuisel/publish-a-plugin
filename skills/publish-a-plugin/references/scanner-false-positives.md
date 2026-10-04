@@ -6,7 +6,7 @@ and sends them somewhere. On a plugin made of markdown this produces false posit
 
 The finding reads roughly: *"Something in the plugin reads a credential (a token or API key) from
 the user's environment or files and could send it to a server. A reviewer will check where it goes."*
-It then names the files, and often pairs two findings into a two-step narrative — one file "reads the
+It then names the files, and often pairs two findings into a two-step narrative; one file "reads the
 environment", another "can send data off the machine".
 
 ## Patterns that trigger it
@@ -47,11 +47,11 @@ The phrase "environment variables" spelled out did not trigger it. The bare toke
 ## Patterns you should refuse to change
 
 This matters as much as the fixes. Some `$` usages are **required syntax**, and rewriting them makes
-your documentation wrong — a worse outcome than a review queue.
+your documentation wrong; a worse outcome than a review queue.
 
-- **PowerShell** — `$true`, `$false`, `-AllowTranscription $false`. Keep them, inside code spans.
-- **OData / query parameters** — `&$top=N`.
-- **Claude Code's own command substitution** — `$ARGUMENTS` in `commands/*.md` is required for the
+- **PowerShell**; `$true`, `$false`, `-AllowTranscription $false`. Keep them, inside code spans.
+- **OData / query parameters**; `&$top=N`.
+- **Claude Code's own command substitution**; `$ARGUMENTS` in `commands/*.md` is required for the
   command to work at all.
 
 In practice these did not trigger findings when they sat inside backticks in files the scanner had
@@ -62,11 +62,11 @@ a third-party product, and that is exactly the kind of thing a reviewer confirms
 
 Ask one question: **does the plugin actually read a credential?**
 
-If **no** — it is documentation, there is no code, no MCP server, no script. Reword the triggering
+If **no**; it is documentation, there is no code, no MCP server, no script. Reword the triggering
 prose where rewording costs nothing, keep required syntax, and say so plainly in `PRIVACY.md`. If it
 still holds, let a reviewer confirm it. That is a legitimate outcome, not a failure.
 
-If **yes** — then the scanner is right and the `${user_config.KEY}` remedy is the correct one: ask
+If **yes**; then the scanner is right and the `${user_config.KEY}` remedy is the correct one: ask
 the user for the value through a config option marked sensitive, rather than reading it from their
 machine.
 

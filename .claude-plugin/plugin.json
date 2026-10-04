@@ -1,8 +1,8 @@
 {
   "name": "publish-a-plugin",
   "displayName": "Publish a Plugin",
-  "description": "Get a Claude Code plugin through Anthropic's directory review on the first try. Documents the security scanner's behaviour, which is written down nowhere else, and ships a preflight script that catches the findings before you submit.",
-  "version": "1.0.0",
+  "description": "Prepare a Claude Code plugin for directory review. Check its package, investigate validation findings, and apply requested fixes.",
+  "version": "1.1.0",
   "author": {
     "name": "Rachael Quisel"
   },

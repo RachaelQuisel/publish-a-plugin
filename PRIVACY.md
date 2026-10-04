@@ -1,4 +1,4 @@
-# Privacy notice — Publish a Plugin
+# Privacy notice: Publish a Plugin
 
 Last updated October 4, 2026.
 
@@ -14,16 +14,16 @@ Publish a Plugin is a package of instructions, reference text, and two local scr
 
 ## Why an automated scan will flag the reference files
 
-This is worth stating plainly, because the finding is expected and the text that causes it is the point of the package.
+The reference intentionally includes the patterns discussed in observed findings.
 
 `references/scanner-false-positives.md` documents the exact markdown patterns that make the directory's scanner report a credential read. To document them it has to contain them. The file holds the literal examples `$95M`, `$20/mo`, the bare token `env`, `printenv`, `export -p`, and the `${user_config.KEY}` remedy syntax. `SKILL.md` names `$PATH` and `$1` in the passage explaining which shell syntax must be preserved.
 
-An automated scan reading prose as shell will read those as a plugin assembling a command at run time and reading the installer's environment. Neither is true. There is no code here that reads a credential, and the scripts above are the only executable parts.
+An automated scan may interpret the quoted prose as executable shell. The bundled scripts do not read credentials. There is no code here that reads a credential, and the scripts above are the only executable parts.
 
-Rewriting those examples would destroy the only reference that records this behaviour, which is the reason the package exists. They are left as published, and a reviewer confirming that is the expected outcome.
+Preserve these literal examples so the reader can identify the reported patterns. A reviewer can inspect their documented purpose.
 
 ## What it reads and sends
 
-It reads the plugin folder you point it at, on your machine. It sends nothing anywhere. There is no account to create and no data to retain.
+The local scripts read the selected files and make no network requests. Requested GitHub or directory actions use the host’s available tools. Those services process requests under their own terms. The publisher operates no service for this package.
 
 For questions, use the [repository issue tracker](https://github.com/RachaelQuisel/publish-a-plugin/issues).

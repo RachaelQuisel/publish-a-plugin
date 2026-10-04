@@ -50,7 +50,7 @@ the plugin to load; the rest are what make a listing look finished.
 ```
 
 `source` is `"./"` for a root-layout plugin, or `"./plugins/<name>"` for the subdirectory layout.
-The plugin entry's `name` must match `plugin.json`'s `name` exactly — `claude plugin tag` validates
+The plugin entry's `name` must match `plugin.json`'s `name` exactly; `claude plugin tag` validates
 that they agree.
 
 ## Version
@@ -74,7 +74,7 @@ The directory reports total size and enforces a per-file limit; images are exclu
 file cap but still count toward the total. Observed totals that passed: 737 KiB and 783 KiB, mostly
 icon. A documentation-heavy plugin at 1.5 MB also passed.
 
-If a single reference file approaches 256 KiB, split it **along seams that already exist** —
-section boundaries, a distinct appendix — rather than restructuring. Give each new file its own
+If a single reference file approaches 256 KiB, split it **along seams that already exist** ;
+section boundaries, a distinct appendix; rather than restructuring. Give each new file its own
 header and a link back to the parent, and leave the parent pointing forward. A file at 90% of a cap
 is a file that breaks the next time you add to it.
