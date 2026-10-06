@@ -12,6 +12,10 @@ Start with `/publish-a-plugin:publish-a-plugin`. The plugin asks for a missing t
 
 Read [how it works](Publish-A-Plugin-HowItWorks-2026-10-03.md). The six focused references cover findings, scanner patterns, icons, manifests, submission steps, and privacy notices.
 
+## Claude Marketplace submission
+
+Submitted to the [Claude Marketplace partner waitlist](https://claude.com/marketplace-partners) on **October 5, 2026**, through XRAY Automation. Submission confirmation was received; Marketplace eligibility and listing have not yet been confirmed.
+
 ## Install
 
 ```text
