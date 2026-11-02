@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publish a Plugin"
+  short_description: "Prepare Claude plugins for directory review"
+  default_prompt: "Use $publish-a-plugin to check a Claude Code plugin package and explain what needs to change before directory review."

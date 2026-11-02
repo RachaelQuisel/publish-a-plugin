@@ -1,9 +1,23 @@
 ---
 name: publish-a-plugin
+version: 1.1.3
 description: Interactively prepare a Claude Code plugin for directory review. Ask about the target, requested stage, and current finding. Check packaging, apply requested fixes, and explain observed scanner findings without promising approval.
 ---
 
 # Publish a Plugin
+
+## Purpose in plain English
+
+This skill helps you check a plugin package, explain validation findings, and prepare the authorized steps toward directory submission.
+
+## How to explain the result
+
+For a client-facing explanation, use ordinary words and the requested format. Explain unfamiliar abbreviations. Name what each number counts and explain its practical meaning. Keep internal identifiers out of the explanation. Keep necessary technical details in the working steps and technical references.
+
+## Following the process
+
+Use the process below. Preserve its conditions, commands, checks, and approval rules. Use information the user already supplied. Follow the existing questions or stopping rules when required information is missing.
+
 
 <!-- preflight-allow: documents-scanner-patterns -->
 

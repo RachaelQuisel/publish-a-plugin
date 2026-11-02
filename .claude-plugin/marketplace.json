@@ -11,7 +11,8 @@
       "description": "Prepare a Claude Code plugin for directory review. Check its package, investigate validation findings, and apply requested fixes.",
       "source": "./",
       "category": "productivity",
-      "homepage": "https://github.com/RachaelQuisel/publish-a-plugin"
+      "homepage": "https://github.com/RachaelQuisel/publish-a-plugin",
+      "version": "1.1.3"
     }
   ]
 }
