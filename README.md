@@ -12,23 +12,6 @@ Start with `/publish-a-plugin:publish-a-plugin`. The plugin asks for a missing t
 
 Read [how it works](Publish-A-Plugin-HowItWorks-2026-10-03.md). The six focused references cover findings, scanner patterns, icons, manifests, submission steps, and privacy notices.
 
-## Claude Marketplace submission
-
-- **Submitted:** [Claude Marketplace partner waitlist](https://claude.com/marketplace-partners), October 5, 2026, through XRAY Automation. Confirmation was received.
-- **Current status:** Waitlist application confirmed. Directory approval or a public listing has not been verified.
-- **Status checked:** October 12, 2026.
-
-### Evidence audit: October 16, 2026
-
-- **Partner waitlist:** Submission confirmation recorded for 2026-10-05, through XRAY Automation. This is retained repository evidence, not a newly inspected confirmation receipt.
-- **Plugin directory:** No separate directory submission evidence found.
-- **Approved:** Unverified. **Publicly listed:** Unverified. No verified public listing URL is recorded.
-- **Verification limit:** The publisher portal requires sign-in. Public searches and the connected mailbox search did not establish approval; missing results are not proof of rejection or non-publication.
-- **Next action:** Retrieve the original partner confirmation; check the submitting account for a separate plugin-directory submission before creating one.
-
-The [partner waitlist](https://claude.com/marketplace-partners) is for Claude-powered enterprise products. It is separate from plugin-directory review and GitHub marketplace installation. A waitlist application is not directory approval.
-
-
 ## Install
 
 ```text
