@@ -5,7 +5,7 @@
     {
       "name": "publish-a-plugin",
       "root": ".",
-      "version": "1.1.3",
+      "version": "1.1.4",
       "manifests": [
         "plugin.json",
         ".claude-plugin/plugin.json",
@@ -19,8 +19,8 @@
   "skills": [
     {
       "path": "skills/publish-a-plugin/SKILL.md",
-      "version": "1.1.3",
-      "sha256": "a01f2957a07239d5db0130e206a4b0611d4b1a308dcef457dc16e6c6c6a17f40",
+      "version": "1.1.4",
+      "sha256": "6e48fdee0db6a7519785ced8af4ef3074ec97652b639ed0939979912bb91db9c",
       "source": "skills/publish-a-plugin/SKILL.md",
       "guide": "skills/publish-a-plugin/README.md"
     }

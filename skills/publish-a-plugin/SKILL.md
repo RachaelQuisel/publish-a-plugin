@@ -1,6 +1,6 @@
 ---
 name: publish-a-plugin
-version: 1.1.3
+version: 1.1.4
 description: Interactively prepare a Claude Code plugin for directory review. Ask about the target, requested stage, and current finding. Check packaging, apply requested fixes, and explain observed scanner findings without promising approval.
 ---
 
